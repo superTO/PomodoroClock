@@ -1,0 +1,40 @@
+<h1 class='highlight'>{{ NowTime | async }}</h1>
+<div>
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+    <div fxflex>
+      <h1>Break Time</h1>
+      <div fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+        <button mat-icon-button (click)="subtract(break)"><mat-icon>remove</mat-icon></button>
+        <h1>{{ break | async }}</h1>
+        <button mat-icon-button (click)="add(break)"><mat-icon>add</mat-icon></button>
+      </div>
+    </div>
+
+    <div fxflex></div>
+
+    <div fxflex>
+      <h1>Session Time</h1>
+      <div fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+        <button mat-icon-button (click)="subtract(session)"><mat-icon>remove</mat-icon></button>
+        <h1>{{ session | async }}</h1>
+        <button mat-icon-button (click)="add(session)"><mat-icon>add</mat-icon></button>
+      </div>
+    </div>
+  </div>
+
+  <div fxLayout="row wrap" fxLayoutAlign="center center" *ngIf="!isStart">
+    <button mat-flat-button color="primary" (click)='settime()'>Start</button>
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="center center" *ngIf="isStart">
+    <div fxflex>
+      <button mat-flat-button color="primary" (click)='cancel()'>Cancel</button>
+    </div>
+    <div fxflex>
+      <h1 *ngIf="this.isBreak$ | async">Break Time</h1>
+      <h1 class='highlight'>{{ countTime.format('mm:ss') }}</h1>
+    </div>
+  </div>
+
+</div>
+<!-- <input [(ngModel)]="break">{{break}} -->
