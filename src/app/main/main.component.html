@@ -1,38 +1,85 @@
-<h1 class='highlight'>{{ NowTime | async }}</h1>
-<div>
-  <div fxLayout="row wrap" fxLayoutAlign="space-evenly center">
-    <div fxflex>
-      <h1>Break Time</h1>
-      <div fxLayout="row wrap" fxLayoutAlign="space-evenly center">
-        <button mat-icon-button (click)="subtract(break)"><mat-icon>remove</mat-icon></button>
-        <h1>{{ break | async }}</h1>
-        <button mat-icon-button (click)="add(break)"><mat-icon>add</mat-icon></button>
+<div class='h-80-p' fxLayout="column" fxLayoutAlign="space-evenly center">
+  <div fxflex>
+    <h1 class='font-size-72 text-center'>{{ NowTime | async }}</h1>
+  </div>
+
+  <div fxflex class='w-100-p'>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center">
+      <div fxflex>
+        <div fxLayout="column" fxLayoutAlign="space-evenly center">
+          <div fxflex>
+            <h1>Break Time</h1>
+          </div>
+
+          <div fxflex>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <div fxflex>
+                <button mat-icon-button (click)="subtract(break)">
+                  <mat-icon>remove</mat-icon>
+                </button>
+              </div>
+
+              <div fxflex>
+                <h1 class='pt-16'>{{ break | async }}</h1>
+              </div>
+
+              <div fxflex>
+                <button mat-icon-button (click)="add(break)">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div fxflex></div>
+      <div fxflex>
+        <div fxLayout="column" fxLayoutAlign="space-evenly center">
+          <div fxflex>
+            <h1>Session Time</h1>
+          </div>
 
-    <div fxflex>
-      <h1>Session Time</h1>
-      <div fxLayout="row wrap" fxLayoutAlign="space-evenly center">
-        <button mat-icon-button (click)="subtract(session)"><mat-icon>remove</mat-icon></button>
-        <h1>{{ session | async }}</h1>
-        <button mat-icon-button (click)="add(session)"><mat-icon>add</mat-icon></button>
+          <div fxflex>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <div fxflex>
+                <button mat-icon-button (click)="subtract(session)">
+                  <mat-icon>remove</mat-icon>
+                </button>
+              </div>
+
+              <div fxflex>
+                <h1 class='pt-16'>{{ session | async }}</h1>
+              </div>
+
+              <div fxflex>
+                <button mat-icon-button (click)="add(session)">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div fxLayout="row wrap" fxLayoutAlign="center center" *ngIf="!isStart">
-    <button mat-flat-button color="primary" (click)='settime()'>Start</button>
+  <div fxflex>
+    <button mat-flat-button color="primary" (click)="isStart ? cancel() : settime()">{{ isStart ? 'Cancel' : 'Start' }}</button>
   </div>
 
-  <div fxLayout="column" fxLayoutAlign="center center" *ngIf="isStart">
-    <div fxflex>
-      <button mat-flat-button color="primary" (click)='cancel()'>Cancel</button>
-    </div>
-    <div fxflex>
-      <h1 *ngIf="this.isBreak$ | async">Break Time</h1>
-      <h1 class='highlight'>{{ countTime.format('mm:ss') }}</h1>
+  <div fxflex>
+    <div class='h-100-p' fxLayout="column" fxLayoutAlign="space-between center" *ngIf="isStart">
+      <div fxflex>
+      </div>
+
+      <div fxflex>
+        <h1 *ngIf="this.isBreak$ | async">Break Time</h1>
+      </div>
+
+      <div fxflex>
+        <h1 class='mark font-size-36 text-center'>{{ countTime.format('mm:ss') }}</h1>
+      </div>
     </div>
   </div>
 

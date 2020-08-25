@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -47,6 +47,7 @@ import { MatTreeModule } from '@angular/material/tree';
     CommonModule,
     FlexLayoutModule,
     FormsModule,
+    ReactiveFormsModule,
 
     // Material
     MatAutocompleteModule,
